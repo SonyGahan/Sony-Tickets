@@ -27,7 +27,7 @@ public class TicketService {
 
     // Mapeo una lista de VueloDto a una lista de Ticket con los detalles del pasajero
     public Ticket ticketMapper(VueloDto vueloDto, Ticket ticket) {
-        Ticket newTicket = new Ticket();
+        Ticket newTicket = new Ticket(); //Creo una nueva instancia de ticket
         newTicket.setId(vueloDto.getId());
         newTicket.setVuelo(vueloDto);
         newTicket.setPassengerName(ticket.getPassengerName());
@@ -36,16 +36,11 @@ public class TicketService {
         return newTicket;
     }
 
-    //Agrego un nuevo ticket a partir de un vuelo particular a una lista de tickets
-    public Ticket addTicket(Ticket ticket, VueloDto vueloDto) {
-        // Mapeo el ticket para el vuelo específico
-        Ticket mappedTicket = ticketMapper(vueloDto, ticket);
-
-        // Agrego el ticket mapeado a la lista de tickets del servicio
-        tickets.add(mappedTicket);
-
-        // Devuelvo el ticket agregado
-        return mappedTicket;
+    //Agrego un nuevo ticket a partir de un vuelo en particular a una lista de tickets
+    public Optional<Ticket> addTicket(Ticket ticket, VueloDto vueloDto) {
+        Ticket mappedTicket = ticketMapper(vueloDto, ticket); // Mapeo el ticket para el vuelo específico
+        tickets.add(mappedTicket); // Agrego el ticket mapeado a la lista de tickets del servicio
+        return Optional.of(mappedTicket); // Devuelvo el ticket agregado como Optional
     }
 
     //Elimino un ticket a partir de su ID
@@ -54,7 +49,6 @@ public class TicketService {
         Optional<Ticket> ticketOptional = tickets.stream()
                 .filter(ticket -> ticket.getId().equals(ticketId))
                 .findFirst();
-
         // Si el ticket existe, lo elimino de la lista de tickets
         ticketOptional.ifPresent(tickets::remove);
     }

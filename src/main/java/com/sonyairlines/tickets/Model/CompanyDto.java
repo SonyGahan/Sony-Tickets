@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Ticket {
+public class CompanyDto {
     private Long id;
-    private VueloDto vuelo;
-    private String passengerName;
-    private String passengerEmail;
-    private String passengerPassport;
+    private String name;
+    private String page;
+    private String banner;
 }

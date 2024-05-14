@@ -15,4 +15,6 @@ public class VueloDto {
     private String fechaHoraSalida;
     private String fechaHoraLlegada;
     private double convertedPrice;
+    private String frecuencia;
+    private CompanyDto company;
 }

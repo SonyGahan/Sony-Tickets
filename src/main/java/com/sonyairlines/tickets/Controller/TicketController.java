@@ -37,9 +37,8 @@ public class TicketController {
 
     //Agrega un ticket nuevo a la lista de tickets
     @PostMapping("/addticket")
-    public Ticket addTicket(@RequestBody Ticket ticket, VueloDto vueloDto){
-        Long vueloDtoId = ticket.getVuelo().getId(); // Extraer el ID del vuelo
-        return ticketservice.addTicket(ticket, vueloDto); // Llamar al método del servicio pasando el ticket y el vuelo
+    public Optional<Ticket> createVuelo(@RequestBody Ticket ticket, @RequestParam VueloDto vueloDto){
+        return ticketservice.addTicket(ticket, vueloDto);
     }
 
     //Busca y elimina un ticket segun su ID de una lista de tickets
