@@ -13,13 +13,11 @@ public interface VueloClient {
     //Desarrollo los metodos que dan puntos de acceso a "vuelos-api"
 
     @GetMapping("/vuelos")
-    List<VueloDto> getAllFlights();
+    List<VueloDto> getListadoDeVuelos();
 
     @GetMapping("/vuelos/{id}")
     Optional<VueloDto> getFlightById(@PathVariable Long id);
 
-
-    //Ver si es conveniente utilizarlos o no...
     @PostMapping("/vuelos/actualizar")
     Optional<VueloDto> updateFlight(@RequestBody VueloDto vuelo);
 

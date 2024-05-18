@@ -32,23 +32,23 @@ public class TicketController {
     //Muestra una lista de Vuelos a traves del VueloClient
     @GetMapping("/vuelos")
     public List<VueloDto> getAllFlights(){
-        return vueloClient.getAllFlights();
+        return vueloClient.getListadoDeVuelos();
     }
 
     //Agrega un ticket nuevo a la lista de tickets
     @PostMapping("/addticket")
-    public Optional<Ticket> createVuelo(@RequestBody Ticket ticket, @RequestParam VueloDto vueloDto){
-        return ticketservice.addTicket(ticket, vueloDto);
+    public Optional<Ticket> createTicket(@RequestBody Ticket ticket){
+        return ticketservice.addTicket(ticket, ticket.getVuelo());
     }
 
     //Busca y elimina un ticket segun su ID de una lista de tickets
-    @DeleteMapping("/tickets/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public void deleteTicket(@PathVariable Long id) {
         ticketservice.deleteTicket(id);
     }
 
     //Busca y edita un ticket segun su ID de una lista de tickets
-    @PutMapping("/tickets/actualizar/{id}")
+    @PutMapping("/actualizar/{id}")
     public Optional<Ticket> updateTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
         List<Ticket> tickets = ticketservice.getAllTickets(); // Obtener la lista de tickets
         return ticketservice.actualizarTicket(id, ticket);
